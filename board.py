@@ -2,16 +2,16 @@ import random
 import numpy as np
 
 from RandomMaze import random_maze
-from constants import WHITE, RED, GREEN, BLUE, BLACK
+from constants import WHITE, RED, GREEN, BLUE, BLACK, MAZE_SIZE, VIEW_SIZE
 
 
 class Board:
 
     def __init__(self):
         self.cell_size = 5
-        self.row_len = 30
+        self.row_len = MAZE_SIZE
         self.size = self.cell_size * self.row_len
-        self.view_size = self.cell_size * 11
+        self.view_size = self.cell_size * VIEW_SIZE
         self.start_pos = (int(self.cell_size / 2), int(self.cell_size / 2))
         self.finish_pos = None
         self.im = None
@@ -21,8 +21,6 @@ class Board:
     def init(self):
         maze = random_maze(self.row_len)
         self.im = np.array([WHITE] * self.size ** 2)
-        # for _ in range(300):
-        #     im[random.randint(0, size**2)] = RED
         self.im = np.reshape(self.im, (self.size, self.size, 3))
         self.snake_pos = self.start_pos
         self.old_snake_pos = self.snake_pos
